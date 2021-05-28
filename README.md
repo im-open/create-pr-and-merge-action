@@ -1,6 +1,6 @@
 # Create PR and Merge Build Change
 
-A GitHub Action that creates a pull request for a provided branch, approves it, and merges the change to the default branch. The approval and merging is done via a Personal Access Token (PAT).
+A GitHub Action that creates a pull request for a provided branch with one account (usually the GitHub Actions bot), then approves the PR and merges it into another branch with a separate account.  The approval and merging is done via a Personal Access Token (PAT).
 
 ## Inputs
 
@@ -9,7 +9,7 @@ A GitHub Action that creates a pull request for a provided branch, approves it, 
 | `base-branch`               | true     |  The branch you want to merge changes into.                                                             |
 | `head-branch`               | true     |  The branch that contains the changes you want to merge.                                                |
 | `pr-title`                  | true     |  The title of the pull request.                                                                         |
-| `github-token`              | true     |  The token that GitHub actions can use to create the PR.                                                |
+| `github-token`              | true     |  The GitHub Action bot token used to create the PR.                                                |
 | `pat-token`                 | true     |  The token used to submit a review and merge the PR.                                                    |
 
 ## Recompiling
