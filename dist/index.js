@@ -6239,11 +6239,11 @@ var baseBranch = core.getInput("base-branch");
 var headBranch = core.getInput("head-branch");
 var prTitle = core.getInput("pr-title");
 var gitHubToken = core.getInput("github-token");
-var pipelineBotToken = core.getInput("pipeline-bot-token");
+var patToken = core.getInput("pat-token");
 async function run() {
   const context = github.context;
   const actionsOctokit = github.getOctokit(gitHubToken);
-  const pipelineBotOctokit = github.getOctokit(pipelineBotToken);
+  const patTokenOctokit = github.getOctokit(patToken);
   let prNumber = 0;
   try {
     const { data: prResult } = await actionsOctokit.pulls.create({
@@ -6260,7 +6260,7 @@ async function run() {
     return;
   }
   try {
-    await pipelineBotOctokit.pulls.createReview({
+    await patTokenOctokit.pulls.createReview({
       owner: context.repo.owner,
       repo: context.repo.repo,
       pull_number: prNumber,
@@ -6271,7 +6271,7 @@ async function run() {
     return;
   }
   try {
-    await pipelineBotOctokit.pulls.merge({
+    await patTokenOctokit.pulls.merge({
       owner: context.repo.owner,
       repo: context.repo.repo,
       pull_number: prNumber,

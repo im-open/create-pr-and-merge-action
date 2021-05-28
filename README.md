@@ -12,6 +12,36 @@ A GitHub Action that creates a pull request for a provided branch with one accou
 | `github-token`              | true     |  The GitHub Action bot token used to create the PR.                                                |
 | `pat-token`                 | true     |  The token used to submit a review and merge the PR.                                                    |
 
+## Example
+
+```yml
+name: Map project versions
+on: workflow_dispatch
+jobs:
+  map-some-version:
+    runs-on: ubuntu-20.04
+    outputs:
+      env: ${{ steps.map-versions.outputs.version_map }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Add release notes
+        run: |
+          git checkout -b release-note-update
+          touch version-1.0.0_release-notes.txt
+          git add .
+          git commit -m "Adding release notes for version 1.0.0"
+
+      - name: Merge Auto Generated Release Notes
+        uses: im-open/create-pr-and-merge-action@v1
+        with:
+          base-branch: main
+          head-branch: release-note-update
+          pr-title: 'Auto-generated release note update for version 1.0.0'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          pat-token: ${{ secrets.PAT }}
+```
+
 ## Recompiling
 
 If changes are made to the action's code in this repository, or its dependencies, you will need to re-compile the action.

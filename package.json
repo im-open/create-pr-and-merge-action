@@ -16,7 +16,7 @@
     }
   },
   "keywords": [],
-  "author": "",
+  "author": "wtw",
   "license": "ISC",
   "dependencies": {
     "@actions/core": "^1.2.7",
