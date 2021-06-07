@@ -18,10 +18,8 @@ A GitHub Action that creates a pull request for a provided branch with one accou
 name: Map project versions
 on: workflow_dispatch
 jobs:
-  map-some-version:
+  add-release-notes-and-merge:
     runs-on: ubuntu-20.04
-    outputs:
-      env: ${{ steps.map-versions.outputs.version_map }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
