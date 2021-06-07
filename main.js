@@ -1,11 +1,11 @@
-const github = require("@actions/github");
-const core = require("@actions/core");
+const github = require('@actions/github');
+const core = require('@actions/core');
 
-const baseBranch = core.getInput("base-branch");
-const headBranch = core.getInput("head-branch");
-const prTitle = core.getInput("pr-title");
-const gitHubToken = core.getInput("github-token");
-const patToken = core.getInput("pat-token");
+const baseBranch = core.getInput('base-branch');
+const headBranch = core.getInput('head-branch');
+const prTitle = core.getInput('pr-title');
+const gitHubToken = core.getInput('github-token');
+const patToken = core.getInput('pat-token');
 
 async function run() {
   const context = github.context;
@@ -19,7 +19,7 @@ async function run() {
       repo: context.repo.repo,
       base: baseBranch,
       head: headBranch,
-      title: prTitle,
+      title: prTitle
     });
 
     prNumber = prResult.number;
@@ -34,7 +34,7 @@ async function run() {
       owner: context.repo.owner,
       repo: context.repo.repo,
       pull_number: prNumber,
-      event: "APPROVE",
+      event: 'APPROVE'
     });
   } catch (e) {
     core.setFailed(`An error occurred while reviewing the pull request: ${e}`);
@@ -45,7 +45,7 @@ async function run() {
     await patTokenOctokit.pulls.merge({
       owner: context.repo.owner,
       repo: context.repo.repo,
-      pull_number: prNumber,
+      pull_number: prNumber
     });
   } catch (e) {
     core.setFailed(`An error occurred while merging the pull request: ${e}`);
