@@ -1,6 +1,6 @@
-name: "Create and merge build change"
+name: 'Create and merge build change'
 
-description: "This action will create a pull request, approve the change, and merge it back in using the provided tokens."
+description: 'This action will create a pull request, approve the change, and merge it back in using the provided tokens.'
 
 inputs:
   base-branch:
@@ -9,6 +9,12 @@ inputs:
   head-branch:
     description: 'The branch that contains the changes you want to merge.'
     required: true
+  repository-name:
+    description: 'The name of the repository where the PR will be created.  Defaults to the repository where the action is used.'
+    required: false
+  owner-name:
+    description: 'The name of the owner (user or organization) for the repo where the PR will be created.  Defaults to the owner where the action is used.'
+    required: false
   pr-title:
     description: 'The title of the PR.'
     required: true
@@ -17,8 +23,8 @@ inputs:
     required: true
   pat-token:
     description: 'The token used to submit a review and merge the PR.'
-    required: true            
+    required: true
 
 runs:
-  using: "node12"
-  main: "dist/index.js"
+  using: 'node12'
+  main: 'dist/index.js'

@@ -5637,6 +5637,8 @@ var github = require_github();
 var core = require_core();
 var baseBranch = core.getInput('base-branch');
 var headBranch = core.getInput('head-branch');
+var repoName = core.getInput('repository-name');
+var ownerName = core.getInput('owner-name');
 var prTitle = core.getInput('pr-title');
 var gitHubToken = core.getInput('github-token');
 var patToken = core.getInput('pat-token');
@@ -5644,11 +5646,13 @@ async function run() {
   const context = github.context;
   const actionsOctokit = github.getOctokit(gitHubToken);
   const patTokenOctokit = github.getOctokit(patToken);
+  if (!repoName || repoName.length < 1) repoName = context.repo.repo;
+  if (!ownerName || ownerName.length < 1) ownerName = context.repo.owner;
   let prNumber = 0;
   try {
     const { data: prResult } = await actionsOctokit.pulls.create({
-      owner: context.repo.owner,
-      repo: context.repo.repo,
+      owner: ownerName,
+      repo: repoName,
       base: baseBranch,
       head: headBranch,
       title: prTitle
@@ -5661,8 +5665,8 @@ async function run() {
   }
   try {
     await patTokenOctokit.pulls.createReview({
-      owner: context.repo.owner,
-      repo: context.repo.repo,
+      owner: ownerName,
+      repo: repoName,
       pull_number: prNumber,
       event: 'APPROVE'
     });
@@ -5672,8 +5676,8 @@ async function run() {
   }
   try {
     await patTokenOctokit.pulls.merge({
-      owner: context.repo.owner,
-      repo: context.repo.repo,
+      owner: ownerName,
+      repo: repoName,
       pull_number: prNumber
     });
   } catch (e) {
