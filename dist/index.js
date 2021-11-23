@@ -5632,7 +5632,7 @@ var require_core = __commonJS({
   }
 });
 
-// main.js
+// src/main.js
 var github = require_github();
 var core = require_core();
 var baseBranch = core.getInput('base-branch');
