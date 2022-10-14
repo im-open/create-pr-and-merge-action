@@ -39,7 +39,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Add release notes
         run: |
           git checkout -b release-note-update
@@ -66,13 +66,13 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout this-repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: im-open/this-repo
           path: this-repo
 
       - name: Checkout secondary-repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: im-open/secondary-repo
           path: secondary-repo
