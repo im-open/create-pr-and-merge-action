@@ -39,7 +39,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Add release notes
         run: |
           git checkout -b release-note-update
@@ -48,7 +48,7 @@ jobs:
           git commit -m "Adding release notes for version 1.0.0"
 
       - name: Merge Auto Generated Release Notes
-        uses: im-open/create-pr-and-merge-action@v1.0.6
+        uses: im-open/create-pr-and-merge-action@v1.1.0
         with:
           base-branch: main
           head-branch: release-note-update
@@ -66,13 +66,13 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout this-repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: im-open/this-repo
           path: this-repo
 
       - name: Checkout secondary-repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: im-open/secondary-repo
           path: secondary-repo
@@ -85,7 +85,7 @@ jobs:
           git commit -m "Copy templates from this-repo to secondary-repo"
 
       - name: Merge Auto Generated Release Notes
-        uses: im-open/create-pr-and-merge-action@v1.0.6
+        uses: im-open/create-pr-and-merge-action@v1.1.0
         with:
           base-branch: main
           head-branch: sync-templates
