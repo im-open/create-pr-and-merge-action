@@ -48,7 +48,8 @@ jobs:
           git commit -m "Adding release notes for version 1.0.0"
 
       - name: Merge Auto Generated Release Notes
-        uses: im-open/create-pr-and-merge-action@v1.1.2
+        # You may also reference the major or major.minor version
+        uses: im-open/create-pr-and-merge-action@v1.1.3
         with:
           base-branch: main
           head-branch: release-note-update
@@ -85,7 +86,8 @@ jobs:
           git commit -m "Copy templates from this-repo to secondary-repo"
 
       - name: Merge Auto Generated Release Notes
-        uses: im-open/create-pr-and-merge-action@v1.1.2
+        # You may also reference the major or major.minor version
+        uses: im-open/create-pr-and-merge-action@v1.1.3
         with:
           base-branch: main
           head-branch: sync-templates
