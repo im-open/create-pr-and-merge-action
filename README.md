@@ -1,3 +1,7 @@
+# DEPRECATED
+
+This action was deprecated on 2023-09-08 and will no longer receive support or updates.
+
 # Create PR and Merge Build Change
 
 A GitHub Action that creates a pull request for a provided branch with one account (usually the GitHub Actions bot), then approves the PR and merges it into another branch with a separate account.  The approval and merging is done via a Personal Access Token (PAT).
